@@ -1,8 +1,11 @@
 import Anthropic from "@anthropic-ai/sdk";
 
-export const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY!,
-});
+let _client: Anthropic | undefined;
+
+function getClient(): Anthropic {
+  if (!_client) _client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
+  return _client;
+}
 
 export interface ProspectRow {
   first_name?: string;
@@ -13,7 +16,7 @@ export interface ProspectRow {
 }
 
 export async function generateOpeningLine(prospect: ProspectRow): Promise<string> {
-  const message = await anthropic.messages.create({
+  const message = await getClient().messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 200,
     system: `You are an expert cold email copywriter. Write a single personalized opening line for a cold email. It must:
