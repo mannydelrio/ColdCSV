@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient, createServiceClient } from "@/lib/supabase/server";
 import { generateOpeningLine } from "@/lib/anthropic";
 import { parseCSV, extractProspect, buildCSV } from "@/lib/csv";
+import { sendResultEmail } from "@/lib/email";
 
 export async function POST(request: NextRequest) {
   const supabase = await createClient();
@@ -99,6 +100,8 @@ export async function POST(request: NextRequest) {
       job_id: job.id,
       rows_processed: creditsConsumed,
     });
+
+    await sendResultEmail(user.email!, base64, creditsConsumed).catch(() => null);
 
     return NextResponse.json({ jobId: job.id, downloadUrl });
   } catch (err) {
