@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item *)",
+      "PowerShell(stripe *)",
+      "PowerShell(winget install *)",
+      "Bash(stripe login *)",
+      "PowerShell(stripe login *)",
+      "PowerShell(Get-Content *)",
+      "PowerShell(stripe config *)",
+      "PowerShell(stripe prices *)",
+      "PowerShell(supabase *)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(Rename-Item *)",
+      "PowerShell(Get-Process *)",
+      "PowerShell(Remove-Item *)",
+      "PowerShell(railway *)",
+      "PowerShell(gh repo *)"
+    ]
+  }
+}
