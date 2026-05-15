@@ -15,7 +15,8 @@
       "PowerShell(Get-Process *)",
       "PowerShell(Remove-Item *)",
       "PowerShell(railway *)",
-      "PowerShell(gh repo *)"
+      "PowerShell(gh repo *)",
+      "PowerShell(public *)"
     ]
   }
 }
